@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+	<session-factory>
+	
+		<!-- SQL Dialect -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		
+		<!-- Database Connection Settings -->
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://127.0.0.1:3306/haircut_app</property>
+		<property name="connection.username">kolia</property>
+		<property name="connection.password">kolia750</property>
+
+		<!-- Connection Pool Size (built-in) -->
+		<property name="connection.pool.size">1</property>
+
+		<!-- Disable the second-level cache -->
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+		<!-- Echo all executed SQL to stdout -->
+		<property name="hibernate.show_sql">true</property>
+
+		<!-- map the rest of classes =============================================================== -->
+		<!-- each pojo class represents a table in db -->
+			
+		<!-- Mention here all the model classes along with their package name -->
+		<mapping class="com.commons.entities.User" />
+		<mapping class="com.commons.entities.Booking"/>
+	</session-factory>
+
+</hibernate-configuration>  
