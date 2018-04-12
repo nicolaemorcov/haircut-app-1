@@ -32,16 +32,20 @@ public class User {
 	@Column(name = "dob")
 	private Timestamp dob;
 	
+	@Column(name = "gender")
+	private Gender gender;
+	
 	public User() {}
 	//constructor for Person class
 	public User(String username, String password, String firstName, String lastName, String email,
-			String dob) throws ParseException{
+			String dob, Gender gender) throws ParseException{
 		this.setUsername(username);
 		this.setPassword(password);
 		this.setFirstName(firstName);
 		this.setLastName(lastName);
 		this.setEmail(email);
 		this.setDOB(dob);
+		this.setGender(gender);
 	}
 	
 	public String getFirstName() {
@@ -74,6 +78,12 @@ public class User {
 	public Timestamp getDOB() {
 		return dob;
 	}
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+	
+	
+	
 	
 	//setters
 	public void setUsername(String username) {
@@ -90,6 +100,10 @@ public class User {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/mm/yyyy");
 		
 		this.dob = new Timestamp(sdf.parse(dob).getTime());
+	}
+	
+	public Gender getGender() {
+		return gender;
 	}
 	
 	//log in

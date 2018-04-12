@@ -20,8 +20,8 @@ public class Customer extends User{
 	private String email;
 	private Timestamp dob;
 	
-	public Customer(String username, String password, String firstName, String lastName, String email, String dob) throws ParseException {
-		super(username, password, firstName, lastName, email, dob);
+	public Customer(String username, String password, String firstName, String lastName, String email, String dob, Gender gender) throws ParseException {
+		super(username, password, firstName, lastName, email, dob, gender);
 		// TODO Auto-generated constructor stub
 		this.username = getUsername();
 		this.password = getPassword();

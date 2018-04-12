@@ -1,5 +1,8 @@
 package com.commons.entities;
 
 public enum Gender {
-	MALE, FEMALE;
+	/** Male. */
+	/** Female. */
+	/** Gender is not known, or not specified. */
+	MALE, FEMALE, UNKNOWN;
 }

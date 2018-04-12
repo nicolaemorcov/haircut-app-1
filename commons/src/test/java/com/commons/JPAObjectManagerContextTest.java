@@ -16,6 +16,7 @@ import org.junit.Test;
 
 import com.commons.entities.Booking;
 import com.commons.entities.Customer;
+import com.commons.entities.Gender;
 import com.commons.entities.User;
 import com.commons.manager.ApplicationManagerContext;
 import com.commons.manager.objectmanagers.DBObjectManager;
@@ -75,7 +76,7 @@ public class JPAObjectManagerContextTest {
 	@Ignore
 	public void deleteUserByEmailTest() {
 		UserService service = new UserService(objectManager);
-		User user = service.findUserByEmail("ionrovcom@gmail.com");
+		User user = service.findUserByEmail("im@gmail.com");
 		service.deleteUser(user);
 		System.out.println("User deleted");
 	}
@@ -85,7 +86,7 @@ public class JPAObjectManagerContextTest {
 	@Ignore
 	public void deleteBookingByCustId() {
 		BookingService bs = new BookingService(objectManager);
-		List<Booking> bookings = bs.findAllBookingsById(19);
+		List<Booking> bookings = bs.findAllBookingsById(20);
 		
 		for (int i = 0; i < bookings.size(); i++) {
 			Booking b = bookings.get(i);
@@ -102,8 +103,8 @@ public class JPAObjectManagerContextTest {
 		UserService us = new UserService(objectManager);
 		
 		System.out.println("searching for user");
-		User user = us.findUserByEmail("galea88@gmail.com");
-		System.out.println(user.getEmail() + ",  " + user.getFirstName());
+		User user = us.findUserByEmail("mm@gmail.com");
+		System.out.println(user.getEmail() + ",  " + user.getFirstName() + " "  + user.getLastName());
 	}
 	
 	//===========Kolia=============
@@ -113,7 +114,7 @@ public class JPAObjectManagerContextTest {
 		BookingService bs = new BookingService(objectManager);
 		
 		System.out.println("searching for booking");
-		List<Booking> bookings = bs.findAllBookingsById(20);
+		List<Booking> bookings = bs.findAllBookingsById(22);
 		for (int i = 0; i < bookings.size(); i++) {
 			Booking b = bookings.get(i);
 			System.out.println(b.getCustomerId() + ", " + b.getDateDue() + ", " + b.getBookingPrice());
@@ -127,7 +128,7 @@ public class JPAObjectManagerContextTest {
 	public void findUserByIdTest() {
 		UserService service = new UserService(objectManager);
 		System.out.println("searching for user");
-		User user = service.findUserById(13);
+		User user = service.findUserById(19);
 		System.out.println(user.getFirstName() + ", " + user.getLastName());
 	
 	}
@@ -138,8 +139,7 @@ public class JPAObjectManagerContextTest {
 		User c1;
 		try {
 			System.out.println("saving the object");
-			c1 = new User("Jimbo", "j19imbo", "Bran", "Biggletoth", "bb@mail.com", "29/10/1977");
-
+			c1 = new User("fggfff", "kugh", "Peter", "Parker", "pp@spidey.com", "17/04/1982", Gender.MALE);
 //			dbManager.createMasterDBFactory();
 			objectManager.persist(c1);
 			System.out.println("saved to db...");
@@ -155,7 +155,7 @@ public class JPAObjectManagerContextTest {
 		Booking b1;
 		try {
 			System.out.println("saving the object");
-			b1 = new Booking(112, 22, "30/03/2018", "12:00", 13.00);
+			b1 = new Booking(1110, 7, "30/03/2018", "12:00", 13.00);
 //			dbManager.createMasterDBFactory();
 			objectManager.persist(b1);
 			System.out.println("booking saved to db...");

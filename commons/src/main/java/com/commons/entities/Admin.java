@@ -10,8 +10,8 @@ import javax.persistence.Table;
 @Entity
 public class Admin extends User{
 
-	public Admin(String username, String password, String firstName, String lastName, String email, String dob) throws ParseException {
-		super(username, password, firstName, lastName, email, dob);
+	public Admin(String username, String password, String firstName, String lastName, String email, String dob, Gender gender) throws ParseException {
+		super(username, password, firstName, lastName, email, dob, gender);
 		// TODO Auto-generated constructor stub
 	}
 }

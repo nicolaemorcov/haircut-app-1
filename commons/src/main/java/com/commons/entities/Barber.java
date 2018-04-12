@@ -11,8 +11,8 @@ import javax.persistence.Table;
 public class Barber extends User{
 	
 	public Barber(String username, String password, String firstName, String lastName, String email, String dob, String address,
-			String staffInfo) throws ParseException {
-		super(username, password, firstName, lastName, email, dob);
+			Gender gender, String staffInfo) throws ParseException {
+		super(username, password, firstName, lastName, email, dob, gender);
 		this.address = address;
 		this.staffInfo = staffInfo;
 	}
