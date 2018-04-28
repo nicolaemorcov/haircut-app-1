@@ -11,10 +11,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.viewer.handlers.BookingHandler;
 import com.viewer.handlers.DisplayHandler;
 import com.viewer.handlers.Handler;
 import com.viewer.handlers.ResponseHandler;
 import com.viewer.handlers.UserAuthenticationHandler;
+import com.viewer.handlers.UserHandler;
 
 /**
  * Here is where the request is forwarded by the server based web.xml configuration.
@@ -55,13 +57,13 @@ public class ServiceEndpoint extends Endpoint {
 			// send back access denied
 			log.info("ACCESS DENIED");
 			
-			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/html/index.html");
-			try {
-				view.forward(request, response);
-			} catch (ServletException | IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+//			RequestDispatcher view = request.getRequestDispatcher("WEB-INF/html/index.html");
+//			try {
+//				view.forward(request, response);
+//			} catch (ServletException | IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
 
 			
 //			//TEMP  !!!!!!!!!!!!!!!!!!!
@@ -106,6 +108,10 @@ public class ServiceEndpoint extends Endpoint {
 		
 		// the url localhost:8080/auth/...
 		addHandler(UserAuthenticationHandler.class, "(?i)^/auth/.*");
+		
+		addHandler(UserHandler.class, "(?i)^/view/users");
+		
+		addHandler(BookingHandler.class, "(?i)^/view/bookings");
 	}
 
 }

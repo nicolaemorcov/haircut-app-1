@@ -4,15 +4,24 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.commons.service.ServiceEntity;
+import com.commons.entities.Service;
+import com.commons.entities.User;
+import com.commons.manager.ApplicationManagerContext;
+import com.commons.manager.objectmanagers.DBObjectManager;
+import com.commons.manager.objectmanagers.DataAccessObject;
+import com.commons.manager.objectmanagers.ObjectManagerContext;
 import com.commons.service.ShopService;
+import com.commons.service.UserService;
 import com.google.gson.Gson;
 
 import net.sf.json.JSONObject;
 
 public class DisplayHandler extends Handler{
-
+	ApplicationManagerContext appManager = new ApplicationManagerContext();
+	DBObjectManager dbManager = new DBObjectManager(appManager);
+	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
 	ShopService service;
+	
 	
 	public DisplayHandler() {
 		service = new ShopService();
@@ -20,9 +29,11 @@ public class DisplayHandler extends Handler{
 	
 	@Override
 	public ResponseHandler doGet(HttpServletRequest request) {
-		// get all the services from database
-		// using ShopService.getAllServices()  method from the commons project
-		List<ServiceEntity> services = service.getAllServices();
+		ShopService service = new ShopService(objectManager);
+		System.out.println("Getting all services");
+		List<Service> services = service.getAllServices();
+		
+		System.out.println(services);
 		
 		// convert to JSON
 		Gson gson = new Gson();
@@ -36,13 +47,7 @@ public class DisplayHandler extends Handler{
 		//return response
 		return new JSONResponse(jsonObject);
 	}
-//	
-//	@Override
-//	public ResponseHandler doPost(HttpServletRequest request) {
-//		// check if the user is admin, if is not admin then return 401 Restriced
-//		
-//		// get parametr from the request
-//		
-//		// save or update service in the database
-//	}
+	
+	
+	
 }

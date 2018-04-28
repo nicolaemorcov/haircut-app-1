@@ -31,6 +31,7 @@
 		<!-- Mention here all the model classes along with their package name -->
 		<mapping class="com.commons.entities.User" />
 		<mapping class="com.commons.entities.Booking"/>
+		<mapping class="com.commons.entities.Service"/>
 	</session-factory>
 
 </hibernate-configuration>  

@@ -14,14 +14,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import com.commons.service.ServiceEntity;
 @Table(name="booking")
 @Entity
 public class Booking {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="booking_id")
+	@Column(name="id")
 	private int bookingId;
 	
 	@Column(name="service_id")
@@ -36,10 +34,10 @@ public class Booking {
 	@Column(name = "date_due")
 	private Timestamp dateDue;
 	
-	@Column(name="booking_time")
+	@Column(name="time")
 	private String bookingTime;
 	
-	@Column(name="booking_price")
+	@Column(name="price")
 	private double bookingPrice;
 	
 	public Booking(){}

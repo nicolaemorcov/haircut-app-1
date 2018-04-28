@@ -5,6 +5,7 @@ com\commons\entities\Gender.class
 com\commons\entities\Product.class
 com\commons\entities\Booking.class
 com\commons\entities\Status.class
+com\commons\entities\Role.class
 com\commons\service\ProductService.class
 com\commons\exception\RequestNotAllowedException.class
 com\commons\entities\Haircut.class

@@ -1,13 +1,18 @@
-package com.commons.service;
+package com.commons.entities;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class ServiceEntity {
+@Table(name="service")
+@Entity
+public class Service {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int serviceId;
 	@Column(name = "service_name")
 	private String serviceName;
@@ -17,9 +22,9 @@ public class ServiceEntity {
 	private String serviceDescription;
 	
 	//constructor
+	public Service() {}
 	//constructor
-		public ServiceEntity(int serviceId, String serviceName, double servicePrice, String description) {
-			this.setServiceId(serviceId);
+		public Service(String serviceName, double servicePrice, String description) {
 			this.setServiceName(serviceName);
 			this.setServicePrice(servicePrice);
 			this.setServiceDescription(description);
@@ -62,12 +67,12 @@ public class ServiceEntity {
 	        }
 	
 	//add services to list
-	public void addService(ServiceEntity newService) {
+	public void addService(Service newService) {
 		System.out.println("Adding to dataBase");
 	}
 	
 	//remove service from list
-	public void removeService(ServiceEntity service) {
+	public void removeService(Service service) {
 		System.out.println("Remove from database");
 	}
 	

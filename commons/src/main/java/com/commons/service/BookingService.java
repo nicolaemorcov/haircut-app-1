@@ -26,6 +26,10 @@ public class BookingService {
 		
 	}
 	
+	public BookingService() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public void createBooking(Booking booking) {
 		oc.persist(booking);
 		System.out.println("Create booking");
@@ -89,10 +93,16 @@ public class BookingService {
 	}
 
 	
+	
+//	===============Kolia==========================
 	public List<Booking> getAllBookings() {
-//		===============Kolia==========================
-		
 
-		return allBookings;
+String query = "FROM Booking b";
+		
+		//Create query
+		List<Booking> bookings = oc.getResultList(Booking.class, query);
+
+
+		return bookings;
 	}
 }

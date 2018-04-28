@@ -17,12 +17,14 @@ import org.junit.Test;
 import com.commons.entities.Booking;
 import com.commons.entities.Customer;
 import com.commons.entities.Gender;
+import com.commons.entities.Service;
 import com.commons.entities.User;
 import com.commons.manager.ApplicationManagerContext;
 import com.commons.manager.objectmanagers.DBObjectManager;
 import com.commons.manager.objectmanagers.DataAccessObject;
 import com.commons.manager.objectmanagers.ObjectManagerContext;
 import com.commons.service.BookingService;
+import com.commons.service.ShopService;
 import com.commons.service.UserService;
 
 public class JPAObjectManagerContextTest {
@@ -81,6 +83,19 @@ public class JPAObjectManagerContextTest {
 		System.out.println("User deleted");
 	}
 	
+//	======================================================================
+	
+	@Test
+	@Ignore
+	public void deleteServiceByIdTest() {
+		ShopService s = new ShopService(objectManager);
+		Service service = s.findServiceById(1);
+		s.deleteService(service);
+		System.out.println("Service deleted");
+	}
+	
+	
+	
 //	=======================================kolia==============================
 	@Test
 	@Ignore
@@ -106,6 +121,41 @@ public class JPAObjectManagerContextTest {
 		User user = us.findUserByEmail("mm@gmail.com");
 		System.out.println(user.getEmail() + ",  " + user.getFirstName() + " "  + user.getLastName());
 	}
+	
+//	====================================kolia=====================
+	@Test
+	@Ignore
+	public void getAllUsersTest() {
+		UserService service = new UserService(objectManager);
+		System.out.println("Getting all users");
+		List<User> users = service.getAllUsers();
+		for (int i = 0; i < users.size(); i++) {
+			User u = users.get(i);
+			System.out.println(u.getFirstName() + ", " + u.getLastName());
+			
+		}
+		
+		System.out.println(users);
+	}
+	
+//	========================================================================
+	
+	@Test
+	@Ignore
+	public void getAllServicesTest() {
+		ShopService service = new ShopService(objectManager);
+		System.out.println("Getting all services");
+		List<Service> services = service.getAllServices();
+		
+		for (int i = 0; i < services.size(); i++) {
+			Service s = services.get(i);
+			System.out.println(s.getServiceName() + ", " + s.getServicePrice());
+			
+		}
+		
+		System.out.println(services);
+	}
+	
 	
 	//===========Kolia=============
 	@Test
@@ -134,12 +184,12 @@ public class JPAObjectManagerContextTest {
 	}
 	
 	@Test
-//	@Ignore
+	@Ignore
 	public void createCustomerTest()  {
 		User c1;
 		try {
 			System.out.println("saving the object");
-			c1 = new User("fggfff", "kugh", "Peter", "Parker", "pp@spidey.com", "17/04/1982", Gender.MALE);
+			c1 = new User("Filea", "22547", "Filipp", "Kirkorov", "fk@mail.com", "30/04/1969", Gender.MALE);
 //			dbManager.createMasterDBFactory();
 			objectManager.persist(c1);
 			System.out.println("saved to db...");
@@ -148,14 +198,26 @@ public class JPAObjectManagerContextTest {
 		}
 	}
 	
-//	=============Kolia==========================
+//	==================================================================================================
+	
 	@Test
 	@Ignore
+	public void createServiceTest()  {
+		Service s;
+		System.out.println("saving the object");
+		s = new Service("High Fade", 14.00, "aaaaaaaaaaaaaaaaaaaaaaaaaa");
+		objectManager.persist(s);
+		System.out.println("saved to db...");
+	}
+	
+//	=============Kolia==========================
+	@Test
+//	@Ignore
 	public void createBookingTest() {
 		Booking b1;
 		try {
 			System.out.println("saving the object");
-			b1 = new Booking(1110, 7, "30/03/2018", "12:00", 13.00);
+			b1 = new Booking(4, 3, "29/06/2018", "16:40", 22.00);
 //			dbManager.createMasterDBFactory();
 			objectManager.persist(b1);
 			System.out.println("booking saved to db...");
@@ -188,11 +250,12 @@ public class JPAObjectManagerContextTest {
 	public void updateUserFirstNameTest() {
 		UserService service = new UserService(objectManager);
 		System.out.println("searching for user");
-		User user = service.findUserByEmail("jt@rmk.com");
-		user.setFirstName("Jimmy");
+		User user = service.findUserByEmail("bb@mail.com");
+		user.setFirstName("Ghena");
 		service.updateFirstName(user);
 		System.out.println("User updated....");
 	} 
+
 	
 //	====================================kolia=====================================
 	@Test
