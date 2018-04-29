@@ -15,14 +15,13 @@ import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 
 public class BookingHandler extends Handler{
-	ApplicationManagerContext appManager = new ApplicationManagerContext();
-	DBObjectManager dbManager = new DBObjectManager(appManager);
-	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
+	ObjectManagerContext objectManager;
 	BookingService service;
 	
 	
-	public BookingHandler() {
-		service = new BookingService();
+	public BookingHandler(ObjectManagerContext objectManager) {
+		this.objectManager = objectManager;
+		service = new BookingService(objectManager);
 	}
 	
 	

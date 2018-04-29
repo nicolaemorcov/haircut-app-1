@@ -1,7 +1,7 @@
 package com.viewer.endpoints;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,9 +14,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.commons.manager.ApplicationManagerContext;
+import com.commons.manager.objectmanagers.DBObjectManager;
+import com.commons.manager.objectmanagers.DataAccessObject;
+import com.commons.manager.objectmanagers.ObjectManagerContext;
+import com.viewer.handlers.BookingHandler;
+import com.viewer.handlers.DisplayHandler;
 import com.viewer.handlers.Handler;
 
 public class Endpoint extends HttpServlet{
+	
+	ApplicationManagerContext appManager = new ApplicationManagerContext();
+	DBObjectManager dbManager = new DBObjectManager(appManager);
+	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
 
 	private static final long serialVersionUID = 4785042788453160450L;
 
@@ -35,6 +45,18 @@ public class Endpoint extends HttpServlet{
 		log.info("Request " + path + " received on Endpoint");
 
 		
+	}
+	
+	protected List<String> getPathArgs(String path) {
+		
+		String[] pathArguments = path.split("/");
+		
+		List<String> pathArgs = new ArrayList<String>();
+		for (int i = 1; i < pathArguments.length; i++) {
+			pathArgs.add(pathArguments[i]);
+		}
+		
+		return pathArgs;
 	}
 	
 	protected Handler findHandler(String path, List<String> pathArgs) {
@@ -61,14 +83,22 @@ public class Endpoint extends HttpServlet{
 
 				log.info("Class " + handlerClass.getName() + " is found");
 
-				try {
-					return handlerClass.getConstructor().newInstance();
-				} catch (InstantiationException | IllegalAccessException 
-						| IllegalArgumentException | InvocationTargetException 
-						| NoSuchMethodException | SecurityException e) {
-					System.out.println("Failed to return new instance using class name: " 
-							+ e);
+				// return a handler with objectManager Parameter
+				switch(handlerClass.getName()) {
+				case "com.viewer.handlers.DisplayHandler":
+					return new DisplayHandler(objectManager);
+					
+				case "com.viewer.handlers.BookingHandler":
+					return new BookingHandler(objectManager);
 				}
+//				try {
+//					return handlerClass.getConstructor().newInstance();
+//				} catch (InstantiationException | IllegalAccessException 
+//						| IllegalArgumentException | InvocationTargetException 
+//						| NoSuchMethodException | SecurityException e) {
+//					System.out.println("Failed to return new instance using class name: " 
+//							+ e);
+//				}
 			}
 		}
 		return null;

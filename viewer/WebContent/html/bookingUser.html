@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Booking Page</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <form action="URL">
+            <!--  General -->
+            <div>
+                <h2>Booking</h2>
+                <div>
+                    <input type="text" id="name" name="name">
+                    <label for="name">Name</label>
+                </div>
+                <div>
+                    <input type="text" id="email" name="email">
+                    <label for="email">Email</label>
+                </div>       
+                <div>
+                    <input type="tel" id="phone" name="phone">
+                    <label for="phone">Phone</label>
+                </div>
+            </div>
+            <!--  Details -->
+            <div>
+                <h2 class="heading">Details</h2>
+                <div>
+                    <input type="date" id="date">
+                    <label>&nbsp;&nbsp;Choose Date</label>     
+                </div>
+                <div>
+                    <input type="time" id="time" min="09:00" max="18:40"step="1200">
+                    <label>&nbsp;&nbsp;Choose Time</label>
+                </div>
+    
+
+                <div>
+                    <select>
+                        <option value="blank" selected></option>
+                        <option id="01">Jeremy Kezlevsky</option>
+                        <option id="02">Amanda Taler</option>
+                        <option id="03">John Wick</option>
+                    </select>
+                    <label for="barber">Choose Barber</label>
+                </div>     
+                <div>
+                    <p>Please describe your needs e.g. "low fade", "..want to shampoo my head".</p>
+                    <div class="controls">
+                        <textarea></textarea>
+                        <label for="comments">Comments</label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </div>  
+            </div>
+        </form>
+    </body>
+  </html>

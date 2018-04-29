@@ -1,11 +1,8 @@
 package com.viewer.endpoints;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -49,7 +46,7 @@ public class ServiceEndpoint extends Endpoint {
 		System.out.println(numOfAccesses);
 		
 		// here we will store all the path arguments
-		List<String> pathArgs = new ArrayList<String>();
+		List<String> pathArgs = getPathArgs(path);
 		
 		Handler handler = findHandler(path, pathArgs);
 		
@@ -104,14 +101,14 @@ public class ServiceEndpoint extends Endpoint {
 		log.info("adding the handlers");
 		
 		// the url localhost:8080/info/...
-		addHandler(DisplayHandler.class, "(?i)^/view/services");
+		addHandler(DisplayHandler.class, "(?i)^/view");
 		
 		// the url localhost:8080/auth/...
 		addHandler(UserAuthenticationHandler.class, "(?i)^/auth/.*");
 		
 		addHandler(UserHandler.class, "(?i)^/view/users");
 		
-		addHandler(BookingHandler.class, "(?i)^/view/bookings");
+		addHandler(BookingHandler.class, "(?i)^/services/bookings");
 	}
 
 }
