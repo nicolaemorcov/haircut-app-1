@@ -1,5 +1,6 @@
 package com.viewer.endpoints;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -52,7 +53,7 @@ public class Endpoint extends HttpServlet{
 		log.info("adding the handlers");
 		
 		// the url localhost:8080/info/...
-		addHandler(DisplayHandler.class, "(?i)^/view");
+		addHandler(DisplayHandler.class, "(?i)^/view/*");
 		
 //		addHandler(UserHandler.class, "(?i)^/view/users");
 	}
@@ -62,13 +63,50 @@ public class Endpoint extends HttpServlet{
 			HttpServletResponse response) {
 		
 		String path = request.getRequestURI();
-		log.info("Request " + path + " received on Endpoint");
 		
-		ResponseHandler handler = new HtmlFileResponse("admin.html");
+		// here we will store all the path arguments
+				List<String> pathArgs = getPathArgs(path);
+		Handler handler = findHandler(path, pathArgs);
 		
-		handler.writeToHttpServletResponse(request, response);
+		if(handler == null) {
+			// send back access denied
+			log.info("ACCESS DENIED");
+			
+		} else {
+			ResponseHandler rh = handler.doGet(request);
+			
+			rh.writeToHttpServletResponse(request, response);
+		}
+		
+//		try {
+//			response.sendRedirect("/view/bookings");
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		List<String> args = getPathArgs(path);
+//		log.info("Request " + path + " received on Endpoint");
+//		
+//		ResponseHandler handler = new HtmlFileResponse(path+".html");
+////		ResponseHandler handler = new HtmlFileResponse("WEB-INF/html/admin.html");
+//		
+//		handler.writeToHttpServletResponse(request, response);
 
 		
+	}
+	
+	public String generateFilePath(List<String> args) {
+		StringBuilder path = new StringBuilder("WEB-INF/html/");
+		
+		if (args.size() > 1) {
+			if(args.get(1) == "bookings") {
+				return path.append("booking.html").toString();
+			}
+		}
+		
+		path.append("admin.html");
+		
+		return path.toString();
 	}
 	
 	protected List<String> getPathArgs(String path) {

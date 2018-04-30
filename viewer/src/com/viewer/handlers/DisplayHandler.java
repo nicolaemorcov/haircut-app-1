@@ -29,25 +29,16 @@ public class DisplayHandler extends Handler{
 	
 	@Override
 	public ResponseHandler doGet(HttpServletRequest request) {
+		String path = request.getRequestURI();
 		
-
-		return new HtmlFileResponse("view.html");
+		List<String> args = getPathArgs(path);
 		
-//		System.out.println("Getting all services");
-//		List<Service> services = service.getAllServices();
-//		
-//		System.out.println(services);
-//		
-//		// convert to JSON
-//		Gson gson = new Gson();
-//		
-//		String output = gson.toJson(services);
-//		
-//		JSONObject jsonObject = new JSONObject();
-//		
-//		// {"data": [{Male haircut}, {Female Haircut, price, dec}]}
-//		jsonObject.put("data", services);
-//		//return response
-//		return new JSONResponse(jsonObject);
+		if(args.size() > 1) {
+			System.out.println(args.get(1));
+			if(args.get(1).equals("bookings")) {
+				return new HtmlFileResponse("/html/booking.html");
+			}
+		}
+		return new HtmlFileResponse("/html/admin.html");
 	}	
 }

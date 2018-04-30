@@ -1,5 +1,7 @@
 package com.viewer.handlers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,5 +32,17 @@ public class Handler {
 
 	public HttpServletResponse doDelete(HttpServletRequest request) {
 		throw new RuntimeException("Does not support DELETE method");
+	}
+	
+protected List<String> getPathArgs(String path) {
+		
+		String[] pathArguments = path.split("/");
+		
+		List<String> pathArgs = new ArrayList<String>();
+		for (int i = 1; i < pathArguments.length; i++) {
+			pathArgs.add(pathArguments[i]);
+		}
+		
+		return pathArgs;
 	}
 }
