@@ -30,6 +30,7 @@ public class DisplayHandler extends Handler{
 	@Override
 	public ResponseHandler doGet(HttpServletRequest request) {
 		
+
 		return new HtmlFileResponse("view.html");
 		
 //		System.out.println("Getting all services");
