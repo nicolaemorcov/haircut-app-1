@@ -1,5 +1,6 @@
 package com.viewer.handlers;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,37 +18,35 @@ import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 
 public class DisplayHandler extends Handler{
-	ApplicationManagerContext appManager = new ApplicationManagerContext();
-	DBObjectManager dbManager = new DBObjectManager(appManager);
-	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
+	
+	ObjectManagerContext objectManager;
 	ShopService service;
 	
-	
-	public DisplayHandler() {
-		service = new ShopService();
+	public DisplayHandler(ObjectManagerContext objectManager) {
+		this.objectManager = objectManager;
+		service = new ShopService(objectManager);
 	}
 	
 	@Override
 	public ResponseHandler doGet(HttpServletRequest request) {
-		ShopService service = new ShopService(objectManager);
-		System.out.println("Getting all services");
-		List<Service> services = service.getAllServices();
 		
-		System.out.println(services);
+		return new HtmlFileResponse("view.html");
 		
-		// convert to JSON
-		Gson gson = new Gson();
-		
-		String output = gson.toJson(services);
-		
-		JSONObject jsonObject = new JSONObject();
-		
-		// {"data": [{Male haircut}, {Female Haircut, price, dec}]}
-		jsonObject.put("data", services);
-		//return response
-		return new JSONResponse(jsonObject);
-	}
-	
-	
-	
+//		System.out.println("Getting all services");
+//		List<Service> services = service.getAllServices();
+//		
+//		System.out.println(services);
+//		
+//		// convert to JSON
+//		Gson gson = new Gson();
+//		
+//		String output = gson.toJson(services);
+//		
+//		JSONObject jsonObject = new JSONObject();
+//		
+//		// {"data": [{Male haircut}, {Female Haircut, price, dec}]}
+//		jsonObject.put("data", services);
+//		//return response
+//		return new JSONResponse(jsonObject);
+	}	
 }

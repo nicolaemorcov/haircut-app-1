@@ -35,35 +35,35 @@ public class BookingService {
 		System.out.println("Create booking");
 	}
 	
-	//==============================kolia==========================================================
-	public void deleteBooking(Booking booking) {
-		String query = "DELETE FROM Booking b WHERE b.customerId = :customerIdVariable";
-		
-		Query q = oc.createQuery(query)
-				.setParameter("customerIdVariable", booking.getCustomerId());
-		oc.executeQuery(q);
-	}
+//	//==============================kolia==========================================================
+//	public void deleteBooking(Booking booking) {
+//		String query = "DELETE FROM Booking b WHERE b.customerId = :customerIdVariable";
+//		
+//		Query q = oc.createQuery(query)
+//				.setParameter("customerIdVariable", booking.getCustomerId());
+//		oc.executeQuery(q);
+//	}
+//	
+//	public void changeDateTime(Booking booking) {
+//		String sql = "UPDATE Booking b SET b.dateDue = :dateDue, b.bookingTime = :time WHERE "
+//				+ " b.customerId = :customerIdVar";
+//		
+//		Query q = oc.createQuery(sql)
+//				.setParameter("dateDue", booking.getDateDue())
+//				.setParameter("customerIdVar", booking.getCustomerId())
+//				.setParameter("time", booking.getBookingTime());
+//		oc.executeQuery(q);
+//		
+//	}
 	
-	public void changeDateTime(Booking booking) {
-		String sql = "UPDATE Booking b SET b.dateDue = :dateDue, b.bookingTime = :time WHERE "
-				+ " b.customerId = :customerIdVar";
-		
-		Query q = oc.createQuery(sql)
-				.setParameter("dateDue", booking.getDateDue())
-				.setParameter("customerIdVar", booking.getCustomerId())
-				.setParameter("time", booking.getBookingTime());
-		oc.executeQuery(q);
-		
-	}
-	
-	public void changeCustomer(Booking booking) {
-		String sql = "UPDATE Booking b SET b.customerId = :customerId  WHERE "+ 
-				" b.customerId = :customerIdVar";
-		
-		Query q = oc.createQuery(sql)
-				.setParameter("customerId", booking.getCustomerId());
-		oc.executeQuery(q);
-	}
+//	public void changeCustomer(Booking booking) {
+//		String sql = "UPDATE Booking b SET b.customerId = :customerId  WHERE "+ 
+//				" b.customerId = :customerIdVar";
+//		
+//		Query q = oc.createQuery(sql)
+//				.setParameter("customerId", booking.getCustomerId());
+//		oc.executeQuery(q);
+//	}
 	
 	
 	
@@ -97,7 +97,7 @@ public class BookingService {
 //	===============Kolia==========================
 	public List<Booking> getAllBookings() {
 
-String query = "FROM Booking b";
+		String query = "FROM Booking b";
 		
 		//Create query
 		List<Booking> bookings = oc.getResultList(Booking.class, query);

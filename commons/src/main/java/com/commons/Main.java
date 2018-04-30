@@ -14,35 +14,35 @@ import com.commons.service.UserService;
 public class Main {
 
 	public static void main(String[] args) throws ParseException {
-//		User newUser = new User("krg111", "4223", "Toby", "Gore", "toby129@gmail.com", "22/10/1978");
+////		User newUser = new User("krg111", "4223", "Toby", "Gore", "toby129@gmail.com", "22/10/1978");
+////		try {
+////			newUser.setDOB("22/10/1978");
+////			
+////		} catch (ParseException e) {
+////			// TODO Auto-generated catch block
+////			e.printStackTrace();
+//////		}
+////		
+//		Booking newBooking = new Booking(24, 2, "25/3/2018", "10:20", 17.00);
 //		try {
-//			newUser.setDOB("22/10/1978");
-//			
-//		} catch (ParseException e) {
-//			// TODO Auto-generated catch block
+//			newBooking.setDateDue("25/03/2018");
+//		}catch (ParseException e) {
 //			e.printStackTrace();
-////		}
+//		}
 //		
-		Booking newBooking = new Booking(24, 2, "25/3/2018", "10:20", 17.00);
-		try {
-			newBooking.setDateDue("25/03/2018");
-		}catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		ApplicationManagerContext appManager;
-		DBObjectManager dbManager;
-		
-		DataAccessObject objectManager;
-		
-		appManager = new ApplicationManagerContext();
-		dbManager = new DBObjectManager(appManager);
-		objectManager = new DataAccessObject(appManager, dbManager);
-		
-//		UserService service = new UserService(objectManager);
-//		service.createUser(newUser);
-
+//		ApplicationManagerContext appManager;
+//		DBObjectManager dbManager;
 //		
+//		DataAccessObject objectManager;
+//		
+//		appManager = new ApplicationManagerContext();
+//		dbManager = new DBObjectManager(appManager);
+//		objectManager = new DataAccessObject(appManager, dbManager);
+//		
+////		UserService service = new UserService(objectManager);
+////		service.createUser(newUser);
+//
+////		
 		
 	}
 }

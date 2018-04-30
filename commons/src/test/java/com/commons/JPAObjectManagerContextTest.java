@@ -59,6 +59,18 @@ public class JPAObjectManagerContextTest {
 		dbManager = null;
 		objectManager = null;
 	}
+	
+	@Test
+	public void getAllBookings() {
+		BookingService bs = new BookingService(objectManager);
+		
+		List<Booking> bookings = bs.getAllBookings();
+		
+		for(Booking b: bookings) {
+			System.out.println(b.getCustomer().getFirstName());
+		}
+	}
+	
 //	@Test
 //	@Ignore
 //	public void deleteBooking() {
@@ -96,19 +108,19 @@ public class JPAObjectManagerContextTest {
 	
 	
 	
-//	=======================================kolia==============================
-	@Test
-	@Ignore
-	public void deleteBookingByCustId() {
-		BookingService bs = new BookingService(objectManager);
-		List<Booking> bookings = bs.findAllBookingsById(20);
-		
-		for (int i = 0; i < bookings.size(); i++) {
-			Booking b = bookings.get(i);
-			bs.deleteBooking(b);
-		}
-		System.out.println("Booking deleted");
-	}
+////	=======================================kolia==============================
+//	@Test
+//	@Ignore
+//	public void deleteBookingByCustId() {
+//		BookingService bs = new BookingService(objectManager);
+//		List<Booking> bookings = bs.findAllBookingsById(20);
+//		
+//		for (int i = 0; i < bookings.size(); i++) {
+//			Booking b = bookings.get(i);
+//			bs.deleteBooking(b);
+//		}
+//		System.out.println("Booking deleted");
+//	}
 	
 	
 	
@@ -156,21 +168,21 @@ public class JPAObjectManagerContextTest {
 		System.out.println(services);
 	}
 	
-	
-	//===========Kolia=============
-	@Test
-	@Ignore
-	public void findBookingByIdTest() {
-		BookingService bs = new BookingService(objectManager);
-		
-		System.out.println("searching for booking");
-		List<Booking> bookings = bs.findAllBookingsById(22);
-		for (int i = 0; i < bookings.size(); i++) {
-			Booking b = bookings.get(i);
-			System.out.println(b.getCustomerId() + ", " + b.getDateDue() + ", " + b.getBookingPrice());
-			
-		}
-	}
+//	
+//	//===========Kolia=============
+//	@Test
+//	@Ignore
+//	public void findBookingByIdTest() {
+//		BookingService bs = new BookingService(objectManager);
+//		
+//		System.out.println("searching for booking");
+//		List<Booking> bookings = bs.findAllBookingsById(22);
+//		for (int i = 0; i < bookings.size(); i++) {
+//			Booking b = bookings.get(i);
+//			System.out.println(b.getCustomerId() + ", " + b.getDateDue() + ", " + b.getBookingPrice());
+//			
+//		}
+//	}
 	
 //	=============KOLIA===============================
 	@Test
@@ -210,21 +222,21 @@ public class JPAObjectManagerContextTest {
 		System.out.println("saved to db...");
 	}
 	
-//	=============Kolia==========================
-	@Test
-//	@Ignore
-	public void createBookingTest() {
-		Booking b1;
-		try {
-			System.out.println("saving the object");
-			b1 = new Booking(4, 3, "29/06/2018", "16:40", 22.00);
-//			dbManager.createMasterDBFactory();
-			objectManager.persist(b1);
-			System.out.println("booking saved to db...");
-		}catch (ParseException e) {
-			System.out.println(e);
-		}
-	}
+////	=============Kolia==========================
+//	@Test
+////	@Ignore
+//	public void createBookingTest() {
+//		Booking b1;
+//		try {
+//			System.out.println("saving the object");
+//			b1 = new Booking(4, 3, "29/06/2018", "16:40", 22.00);
+////			dbManager.createMasterDBFactory();
+//			objectManager.persist(b1);
+//			System.out.println("booking saved to db...");
+//		}catch (ParseException e) {
+//			System.out.println(e);
+//		}
+//	}
 	
 	@Ignore
 	@Test
@@ -256,22 +268,22 @@ public class JPAObjectManagerContextTest {
 		System.out.println("User updated....");
 	} 
 
-	
-//	====================================kolia=====================================
-	@Test
-	@Ignore
-	public void changeDateTimeTest() {
-		BookingService bs = new BookingService(objectManager);
-		try {
-			System.out.println("searching for booking");
-			Booking booking = bs.findBookingById(22);
-			booking.setDateDue("3/04/2018");
-			booking.setBookingTime("15:40");
-			bs.changeDateTime(booking);
-		}catch (ParseException e) {
-			System.out.println(e);
-		}
-	} 
+//	
+////	====================================kolia=====================================
+//	@Test
+//	@Ignore
+//	public void changeDateTimeTest() {
+//		BookingService bs = new BookingService(objectManager);
+//		try {
+//			System.out.println("searching for booking");
+//			Booking booking = bs.findBookingById(22);
+//			booking.setDateDue("3/04/2018");
+//			booking.setBookingTime("15:40");
+//			bs.changeDateTime(booking);
+//		}catch (ParseException e) {
+//			System.out.println(e);
+//		}
+//	} 
 	
 	
 //	@Test

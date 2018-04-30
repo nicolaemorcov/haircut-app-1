@@ -1,7 +1,7 @@
 package com.viewer.endpoints;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,13 +10,28 @@ import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.commons.manager.ApplicationManagerContext;
+import com.commons.manager.objectmanagers.DBObjectManager;
+import com.commons.manager.objectmanagers.DataAccessObject;
+import com.commons.manager.objectmanagers.ObjectManagerContext;
+import com.viewer.handlers.BookingHandler;
+import com.viewer.handlers.DisplayHandler;
 import com.viewer.handlers.Handler;
+import com.viewer.handlers.HtmlFileResponse;
+import com.viewer.handlers.ResponseHandler;
+import com.viewer.handlers.UserAuthenticationHandler;
 
 public class Endpoint extends HttpServlet{
+	
+	ApplicationManagerContext appManager = new ApplicationManagerContext();
+	DBObjectManager dbManager = new DBObjectManager(appManager);
+	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
 
 	private static final long serialVersionUID = 4785042788453160450L;
 
@@ -28,13 +43,44 @@ public class Endpoint extends HttpServlet{
 	private Map<Pattern, Class<? extends Handler>> handlerMapping = new LinkedHashMap<Pattern, Class<? extends Handler>>();
 	
 	@Override
+	public void init(ServletConfig config) throws ServletException {
+		log.info("Initialising the ServiceEndpoint servlet");
+		initializeMappings();
+	}
+	
+	protected void initializeMappings() {
+		log.info("adding the handlers");
+		
+		// the url localhost:8080/info/...
+		addHandler(DisplayHandler.class, "(?i)^/view");
+		
+//		addHandler(UserHandler.class, "(?i)^/view/users");
+	}
+
+	@Override
 	protected void service(HttpServletRequest request, 
 			HttpServletResponse response) {
 		
 		String path = request.getRequestURI();
 		log.info("Request " + path + " received on Endpoint");
+		
+		ResponseHandler handler = new HtmlFileResponse("admin.html");
+		
+		handler.writeToHttpServletResponse(request, response);
 
 		
+	}
+	
+	protected List<String> getPathArgs(String path) {
+		
+		String[] pathArguments = path.split("/");
+		
+		List<String> pathArgs = new ArrayList<String>();
+		for (int i = 1; i < pathArguments.length; i++) {
+			pathArgs.add(pathArguments[i]);
+		}
+		
+		return pathArgs;
 	}
 	
 	protected Handler findHandler(String path, List<String> pathArgs) {
@@ -61,14 +107,22 @@ public class Endpoint extends HttpServlet{
 
 				log.info("Class " + handlerClass.getName() + " is found");
 
-				try {
-					return handlerClass.getConstructor().newInstance();
-				} catch (InstantiationException | IllegalAccessException 
-						| IllegalArgumentException | InvocationTargetException 
-						| NoSuchMethodException | SecurityException e) {
-					System.out.println("Failed to return new instance using class name: " 
-							+ e);
+				// return a handler with objectManager Parameter
+				switch(handlerClass.getName()) {
+				case "com.viewer.handlers.DisplayHandler":
+					return new DisplayHandler(objectManager);
+					
+				case "com.viewer.handlers.BookingHandler":
+					return new BookingHandler(objectManager);
 				}
+//				try {
+//					return handlerClass.getConstructor().newInstance();
+//				} catch (InstantiationException | IllegalAccessException 
+//						| IllegalArgumentException | InvocationTargetException 
+//						| NoSuchMethodException | SecurityException e) {
+//					System.out.println("Failed to return new instance using class name: " 
+//							+ e);
+//				}
 			}
 		}
 		return null;

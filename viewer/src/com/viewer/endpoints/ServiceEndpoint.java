@@ -1,7 +1,6 @@
 package com.viewer.endpoints;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -49,7 +48,7 @@ public class ServiceEndpoint extends Endpoint {
 		System.out.println(numOfAccesses);
 		
 		// here we will store all the path arguments
-		List<String> pathArgs = new ArrayList<String>();
+		List<String> pathArgs = getPathArgs(path);
 		
 		Handler handler = findHandler(path, pathArgs);
 		
@@ -64,13 +63,20 @@ public class ServiceEndpoint extends Endpoint {
 //				// TODO Auto-generated catch block
 //				e.printStackTrace();
 //			}
-
-			
-//			//TEMP  !!!!!!!!!!!!!!!!!!!
-//			response.setContentType("application/json;charset=UTF-8");
-//			response.setStatus(401);
+//			RequestDispatcher rd = request.getRequestDispatcher("html/mypage.html");
 //			try {
-//				response.getWriter().write("{name: test}");
+//				rd.forward(request, response);
+//			} catch (ServletException | IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//			
+////			//TEMP  !!!!!!!!!!!!!!!!!!!
+////			response.setContentType("application/json;charset=UTF-8");
+//			response.setContentType("text/html");
+//			response.setStatus(200);
+//			try {
+//				response.getWriter().write("/view.html");
 //				
 //				return;
 //			} catch (IOException e) {
@@ -100,18 +106,16 @@ public class ServiceEndpoint extends Endpoint {
 	// associate right Handler with request type, 
 	// if request url is localhost:8080/info/.... then call InfoHandler,
 	// if request url is localhost:8080/auth/.... then call UserAuthenticationHandler,
-	private void initializeMappings() {
+	@Override
+	protected void initializeMappings() {
 		log.info("adding the handlers");
-		
-		// the url localhost:8080/info/...
-		addHandler(DisplayHandler.class, "(?i)^/view/services");
 		
 		// the url localhost:8080/auth/...
 		addHandler(UserAuthenticationHandler.class, "(?i)^/auth/.*");
 		
-		addHandler(UserHandler.class, "(?i)^/view/users");
+//		addHandler(UserHandler.class, "(?i)^/view/users");
 		
-		addHandler(BookingHandler.class, "(?i)^/view/bookings");
+		addHandler(BookingHandler.class, "(?i)^/services/bookings");
 	}
 
 }
