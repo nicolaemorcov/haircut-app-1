@@ -43,6 +43,8 @@ public class ServiceEndpoint extends Endpoint {
 	protected void service(HttpServletRequest request, HttpServletResponse response) {
 
 		String path = request.getRequestURI();
+		
+		
 		log.info("Request " + path + " received on ServiceEndpoint");
 		numOfAccesses++;
 		System.out.println(numOfAccesses);
@@ -110,12 +112,9 @@ public class ServiceEndpoint extends Endpoint {
 	protected void initializeMappings() {
 		log.info("adding the handlers");
 		
-		// the url localhost:8080/auth/...
-		addHandler(UserAuthenticationHandler.class, "(?i)^/auth/.*");
-		
-//		addHandler(UserHandler.class, "(?i)^/view/users");
-		
 		addHandler(BookingHandler.class, "(?i)^/services/bookings");
+		
+		addHandler(UserHandler.class, "(?i)^/services/users");
 	}
 
 }

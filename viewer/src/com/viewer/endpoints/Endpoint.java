@@ -27,6 +27,7 @@ import com.viewer.handlers.Handler;
 import com.viewer.handlers.HtmlFileResponse;
 import com.viewer.handlers.ResponseHandler;
 import com.viewer.handlers.UserAuthenticationHandler;
+import com.viewer.handlers.UserHandler;
 
 public class Endpoint extends HttpServlet{
 	
@@ -152,6 +153,9 @@ public class Endpoint extends HttpServlet{
 					
 				case "com.viewer.handlers.BookingHandler":
 					return new BookingHandler(objectManager);
+					
+				case "com.viewer.handlers.UserHandler":
+					return new UserHandler(objectManager);
 				}
 //				try {
 //					return handlerClass.getConstructor().newInstance();

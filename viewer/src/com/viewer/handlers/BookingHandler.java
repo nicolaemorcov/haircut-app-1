@@ -36,7 +36,7 @@ public class BookingHandler extends Handler{
 		// convert to JSON
 		Gson gson = new Gson();
 		
-		String output = gson.toJson(bookings);
+//		String output = gson.toJson(bookings);
 		
 		JSONObject jsonObject = new JSONObject();
 		

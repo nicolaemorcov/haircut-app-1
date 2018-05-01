@@ -15,19 +15,20 @@ import com.google.gson.Gson;
 import net.sf.json.JSONObject;
 
 public class UserHandler extends Handler{
-	ApplicationManagerContext appManager = new ApplicationManagerContext();
-	DBObjectManager dbManager = new DBObjectManager(appManager);
-	ObjectManagerContext objectManager = new DataAccessObject(appManager, dbManager);
 	UserService service;
 	
-	
-	public UserHandler() {
-		service = new UserService();
+	ObjectManagerContext objectManager;
+
+	public UserHandler(ObjectManagerContext objectManager) {
+		this.objectManager = objectManager;
+		this.service = new UserService(objectManager);
 	}
+	
+	
 	
 	@Override
 	public ResponseHandler doGet(HttpServletRequest request) {
-		UserService service = new UserService(objectManager);
+		
 		System.out.println("Getting all users");
 		List<User> users = service.getAllUsers();
 		

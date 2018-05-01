@@ -36,7 +36,7 @@ public class DisplayHandler extends Handler{
 		if(args.size() > 1) {
 			System.out.println(args.get(1));
 			if(args.get(1).equals("bookings")) {
-				return new HtmlFileResponse("/html/booking.html");
+				return new HtmlFileResponse("/html/bookings.html");
 			}
 		}
 		return new HtmlFileResponse("/html/admin.html");
