@@ -9,30 +9,27 @@
  $(document).ready(function()    {
     console.log("Hello world from main files !")
     
-//    $.get("/services", function(data) {
-//              console.log(data);
-////              var services = data.data.data;
-////              $('.service').remove();
-////              console.log(services)
-////              var trHTML = '';
-////              $.each(services, function(i, item) {
-////                  console.log(item)
-////                  trHTML += '<tr class="service"><td>' + item.name + '</td><td>' + item.price + '</td></tr>';
-////              })
-////              $('#services').append(trHTML);
-//          });
-    
 //      $("#servicesBtn").click(function(){
           console.log("Testing jquery")
           $.get("/services/bookings", function(data) {
-              console.log(data);
+//              console.log(data);
               var bookings = data.data.data;
               console.log(bookings);
               $('.bookings').remove();
               var trHTML = '';
               $.each(bookings, function(i, item) {
-                  console.log(item.bookingTime)
-                  trHTML += '<tr class="bookings"><td>' + item.bookingTime + '</td></tr>';
+            	  var booking = item;
+            	  var customer = booking.customer;
+            	  
+            	  var service = booking.service;
+            	  
+//                  console.log(item.bookingTime)
+                  trHTML += '<tr class="bookings"><td>' + customer.firstName + '</td>'
+                  + '<td>' + customer.lastName + '</td>'
+                  +  '<td>' + customer.email + '</td>'
+                  +  '<td>' + booking.bookingTime + '</td>'
+                  +  '<td>' + service.serviceName + '</td>'
+                  +  '<td>&#163; ' + service.servicePrice + '</td></tr>';
               })
               $('#bookings').append(trHTML);
           });

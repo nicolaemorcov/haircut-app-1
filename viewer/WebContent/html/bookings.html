@@ -3,38 +3,46 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/plugins/node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 <body>
 
-<div class="navbar">
-  <a href="admin.html">Home</a>
-  <a class="active" href="#">Bookings</a>
-  <a href="products.html">Products</a>
-  <a href="customers.html">Customers</a>
-</div>
+	<div class="navbar">
+		<a href="admin.html">Home</a> <a class="active" href="#">Bookings</a>
+		<a href="products.html">Products</a> <a href="customers.html">Customers</a>
+	</div>
 
-<div class="main">
-	<h1>Bookings</h1>
-	
-			<button id="servicesBtn">Get services</button>
-	
+	<div class="main">
+		<h1>Bookings</h1>
+
+		<form method="post"></form>
+
+		<table id="bookings">
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Email</th>
+				<th>Time</th>
+				<th>Service</th>
+				<th>Price</th>
+			</tr>
+		</table>
+
+		<button id="servicesBtn">Get services</button>
+
 		<script src="/js/mainPageCtrl.js"></script>
 		
-		<button id="servicesAjax">Get through Ajax</button>
-		
-		<script src="/js/admin.js"></script>
-		
-		<table id="bookings">
-		<tr>
-			<th>Booking Time</th>
-		</tr>
-		</table>
-		
-	
-	<div></div>
+		<table id="bookingTable"></table>
 
-</div>
+		<button id="ajaxBtn">Ajax Button</button>
+
+		<script src="/js/admin.js"></script>
+
+
+		<div></div>
+
+	</div>
 </body>
 </html>
