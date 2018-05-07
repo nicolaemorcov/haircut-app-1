@@ -2,47 +2,50 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="/css/style.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="js/plugins/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--<script src="js/plugins/node_modules/jquery/dist/jquery.min.js"></script>-->
+<script src="../js/plugins/node_modules/jquery/dist/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
 
-	<div class="navbar">
-		<a href="admin.html">Home</a> <a class="active" href="#">Bookings</a>
-		<a href="products.html">Products</a> <a href="customers.html">Customers</a>
-	</div>
+<div class="navbar">
+  <a href="admin.html">Home</a>
+  <a class="active" href="#">Bookings</a>
+  <a href="products.html">Products</a>
+  <a href="customers.html">Customers</a>
+</div>
 
-	<div class="main">
-		<h1>Bookings</h1>
-
-		<form method="post"></form>
-
-		<table id="bookings">
-			<tr>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Time</th>
-				<th>Service</th>
-				<th>Price</th>
-			</tr>
-		</table>
-
-		<button id="servicesBtn">Get services</button>
+<div class="main">
+	<h1>Bookings!!</h1>
+	
+			<button class="servicesBtn" id="cancel">Cancel</button>
+			<button class="servicesBtn" id="finish">Finished</button>
 
 		<script src="/js/mainPageCtrl.js"></script>
+		<script src="../js/mainPageCtrl.js"></script>
+
+		<button id="servicesAjax">Get through Ajax</button>
 		
-		<table id="bookingTable"></table>
-
-		<button id="ajaxBtn">Ajax Button</button>
-
 		<script src="/js/admin.js"></script>
+		
+		<table id="bookings">
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Date</th>
+			<th>Time</th>
+			<th>Email</th>
+			<th>Status</th>
+		</tr>
+            <tr class="bookings" id="101"><td>test booking</td></tr>
+            <tr class="bookings" id="102"><td>test booking 2</td></tr>
+            <tr class="bookings" id="103"><td>test booking 3</td></tr>
+		</table>
+		
+	
+	<div></div>
 
-
-		<div></div>
-
-	</div>
+</div>
 </body>
 </html>

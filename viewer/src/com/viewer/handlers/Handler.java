@@ -22,7 +22,7 @@ public class Handler {
 		throw new RuntimeException("Does not support GET method");
 	}
 
-	public HttpServletResponse doPost(HttpServletRequest request) {
+	public ResponseHandler doPost(HttpServletRequest request) {
 		throw new RuntimeException("Does not support POST method");
 	}
 

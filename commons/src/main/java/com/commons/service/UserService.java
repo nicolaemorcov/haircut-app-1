@@ -84,5 +84,18 @@ public class UserService {
 		
 	}
 	
+//	============================================================================================
+	
+	public User login(String username, String password) {
+		
+		String sql = "FROM User u WHERE u.username = :usernameVar AND u.password = :passwordVarTemporary";
+		User user = oc.getSingleResult(User.class, sql, "usernameVar", username, "passwordVarTemporary", password);
+		
+//		String sql = "FROM User WHERE username = \'" + username + "\' AND password = " + password; 
+//		User user = oc.getSingleResult(User.class, sql);
+		
+		return user;
 
+	}
 }
+

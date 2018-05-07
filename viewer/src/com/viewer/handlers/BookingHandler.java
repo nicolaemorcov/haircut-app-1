@@ -45,4 +45,21 @@ public class BookingHandler extends Handler{
 		//return response
 		return new JSONResponse(jsonObject);
 	}
+	
+	@Override
+	public ResponseHandler doPost(HttpServletRequest request) {
+//		BookingService service = new BookingService(objectManager);
+		
+		Integer id = Integer.parseInt(request.getParameter("bookingId"));
+		String status = request.getParameter("status");
+		
+		service.updateBooking(id, status);
+		
+		
+		
+		//here you update using booking service..to set status canceled where
+		// id = bookingId
+		
+		return new ResponseHandler();
+	}
 }

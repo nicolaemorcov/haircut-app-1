@@ -3,6 +3,8 @@ div.container {
     border: 1px solid gray;
 }
 
+.highlight { background-color: red; }
+
 header, footer {
     padding: 1em;
     color: white;

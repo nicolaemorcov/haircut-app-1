@@ -8,6 +8,10 @@ body {margin:0;}
   width: 100%;
 }
 
+.rowColor{
+	background-color:rgb(76, 130, 175);
+}
+
 .navbar a {
   float: left;
   display: block;
@@ -37,11 +41,24 @@ body {margin:0;}
   }
 
   /* ==========================     Table      =============================================== */
-#tbl{
-  border: solid black; 
+#bookings {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
 }
 
-#tbl tr{
-  border: solid black;
+#bookings td, #bookings th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#bookings tr:hover {background-color: #ddd;}
+
+#bookings th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #333;
+    color: white;
 }
   /* ===================================================================================== */

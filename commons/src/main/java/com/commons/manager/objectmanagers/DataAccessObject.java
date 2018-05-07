@@ -168,6 +168,31 @@ public class DataAccessObject implements ObjectManagerContext {
 
 	public void executeUpdate(String sql, Object... args) {
 		// TODO Auto-generated method stub
+		startTransaction();
+		TypedQuery query = createQuery(sql);
+		
+		//get all parameters and populate the sql query
+		int i = 0;
+		while(i < args.length) {
+			Object paramName = args[i];
+			i++;
+			Object value = args[i];
+			i++;
+			
+			try {
+				int position = Integer.parseInt((String) paramName);
+				log.info(position + "=" + value);
+				
+				query.setParameter(position, value);
+			}
+			catch(NumberFormatException e) {
+				query.setParameter((String) paramName, value);
+			}
+		}
+		
+		query.executeUpdate();
+		
+		masterCommit();
 		
 	}
 
@@ -202,7 +227,7 @@ public class DataAccessObject implements ObjectManagerContext {
 	}
 	
 	public void executeQuery(Query query) {
-		query.executeUpdate();
+//		query.executeUpdate();
 		getMasterSession().close();
 		}
 

@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.service.spi.InjectService;
 @Table(name="booking")
 @Entity
 public class Booking {
@@ -38,31 +40,45 @@ public class Booking {
 	@Column(name="time")
 	private String bookingTime;
 	
-//	@Column(name="price")
-//	private double bookingPrice;
+	@Column(name="status")
+	private String status;
 	
-//	public Booking(){}
-//	
-//
-//	
-//	/**
-//	 * @param bookingId
-//	 * @param serviceId
-//	 * @param customerId
-//	 * @param dateBooked
-//	 * @param dateDue
-//	 * @param bookingPrice
-//	 */
-//	public Booking(int serviceId, int customerId, String dateDue,
-//			String bookingTime, double bookingPrice) throws ParseException{
-//		this.setServiceId(serviceId);
-//		this.setCustomerId(customerId);
-//		this.setDateBooked(dateBooked);
-//		this.setDateDue(dateDue);
-//		this.setBookingPrice(bookingPrice);
-//		this.setBookingTime(bookingTime);
-//	}
+	public Booking(){}
+	
+	public Booking(int serviceId, int customerId, String dateDue,
+			String bookingTime) throws ParseException{
+		this.setCustomer(customer);
+		this.setService(service);
+		this.setDateDue(dateDue);
+		this.setBookingTime(bookingTime);
 
+	}
+	
+	
+	
+	
+	public int getBookingId() {
+		return bookingId;
+	}
+	
+	public void setBookingId(int bookingId) {
+		this.bookingId = bookingId;
+	}
+	
+	public void setDateDue(Timestamp dateDue) {
+		this.dateDue = dateDue;
+	}
+	
+	
+
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	public String getDateBooked() {
 		return dateBooked;
@@ -129,3 +145,18 @@ public class Booking {
 	
 }
 
+//	@Column(name="price")
+//	private double bookingPrice;
+
+//	public Booking(){}
+//	
+//
+//	
+//	/**
+//	 * @param bookingId
+//	 * @param serviceId
+//	 * @param customerId
+//	 * @param dateBooked
+//	 * @param dateDue
+//	 * @param bookingPrice
+//	 */

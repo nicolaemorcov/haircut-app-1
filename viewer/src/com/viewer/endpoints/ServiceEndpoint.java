@@ -86,7 +86,13 @@ public class ServiceEndpoint extends Endpoint {
 //				e.printStackTrace();
 //			}
 		} else {
-			ResponseHandler rh = handler.doGet(request);
+			ResponseHandler rh = null;
+			
+			if(request.getMethod().equalsIgnoreCase("GET")) {				
+				rh = handler.doGet(request);
+			} else if(request.getMethod().equalsIgnoreCase("POST")) {
+				rh = handler.doPost(request);
+			}
 			
 			rh.writeToHttpServletResponse(request, response);
 		}
@@ -112,7 +118,7 @@ public class ServiceEndpoint extends Endpoint {
 	protected void initializeMappings() {
 		log.info("adding the handlers");
 		
-		addHandler(BookingHandler.class, "(?i)^/services/bookings");
+		addHandler(BookingHandler.class, "(?i)^/services/bookings/*");
 		
 		addHandler(UserHandler.class, "(?i)^/services/users");
 	}

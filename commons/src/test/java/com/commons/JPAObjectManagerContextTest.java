@@ -60,7 +60,54 @@ public class JPAObjectManagerContextTest {
 		objectManager = null;
 	}
 	
+	
+//	=======================================   Create    ==================================================
+	
+//	@Test
+//	@Ignore
+//	public void createBookingTest()  {
+//		Booking b;
+//		System.out.println("saving the booking");
+//		try {
+//			b = new Booki;
+//			objectManager.persist(b);
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		System.out.println("saved to db...");
+//	}
+	
+	
 	@Test
+	@Ignore
+	public void createCustomerTest()  {
+		User c1;
+		try {
+			System.out.println("saving the object");
+			c1 = new User("Filea", "22547", "Filipp", "Kirkorov", "fk@mail.com", "30/04/1969", Gender.MALE);
+//			dbManager.createMasterDBFactory();
+			objectManager.persist(c1);
+			System.out.println("saved to db...");
+		} catch (ParseException e) {
+			System.out.println(e);
+		}
+	}
+	
+	                                         // Service
+	@Test
+	@Ignore
+	public void createServiceTest()  {
+		Service s;
+		System.out.println("saving the object");
+		s = new Service("High Fade", 14.00, "aaaaaaaaaaaaaaaaaaaaaaaaaa");
+		objectManager.persist(s);
+		System.out.println("saved to db...");
+	}
+//	==================================================================================================
+	
+	@Test
+	@Ignore
 	public void getAllBookings() {
 		BookingService bs = new BookingService(objectManager);
 		
@@ -86,6 +133,7 @@ public class JPAObjectManagerContextTest {
 	
 	
 //	
+//	=============================     Delete  =========================================
 	@Test
 	@Ignore
 	public void deleteUserByEmailTest() {
@@ -95,7 +143,7 @@ public class JPAObjectManagerContextTest {
 		System.out.println("User deleted");
 	}
 	
-//	======================================================================
+									//Service
 	
 	@Test
 	@Ignore
@@ -190,37 +238,36 @@ public class JPAObjectManagerContextTest {
 	public void findUserByIdTest() {
 		UserService service = new UserService(objectManager);
 		System.out.println("searching for user");
-		User user = service.findUserById(19);
+		User user = service.findUserById(1);
 		System.out.println(user.getFirstName() + ", " + user.getLastName());
 	
 	}
 	
-	@Test
-	@Ignore
-	public void createCustomerTest()  {
-		User c1;
-		try {
-			System.out.println("saving the object");
-			c1 = new User("Filea", "22547", "Filipp", "Kirkorov", "fk@mail.com", "30/04/1969", Gender.MALE);
-//			dbManager.createMasterDBFactory();
-			objectManager.persist(c1);
-			System.out.println("saved to db...");
-		} catch (ParseException e) {
-			System.out.println(e);
-		}
-	}
-	
-//	==================================================================================================
+//	========================================================================
 	
 	@Test
 	@Ignore
-	public void createServiceTest()  {
-		Service s;
-		System.out.println("saving the object");
-		s = new Service("High Fade", 14.00, "aaaaaaaaaaaaaaaaaaaaaaaaaa");
-		objectManager.persist(s);
-		System.out.println("saved to db...");
+	public void findBookingByIdTest() {
+		BookingService service = new BookingService(objectManager);
+		System.out.println("searching for booking");
+		Booking booking = service.findBookingById(2);
+		System.out.println(booking.getDateDue() + ", " + booking.getBookingTime());
+	
 	}
+	
+//	===========================================================================
+	
+	@Test
+	@Ignore
+	public void loginTest() {
+		UserService service = new UserService(objectManager);
+		System.out.println("searching for user");
+		User user = service.login("Jimbo", "j19imbo");
+		System.out.println(user.getFirstName() + ", " + user.getLastName());
+	
+	}
+	
+	
 	
 ////	=============Kolia==========================
 //	@Test
@@ -256,34 +303,55 @@ public class JPAObjectManagerContextTest {
 		System.out.println("temp test");
 	}
 	
-//	===================================kolia======================================
+//	===================================   Update       ======================================
 	@Test
 	@Ignore
 	public void updateUserFirstNameTest() {
 		UserService service = new UserService(objectManager);
 		System.out.println("searching for user");
 		User user = service.findUserByEmail("bb@mail.com");
-		user.setFirstName("Ghena");
+		user.setFirstName("John");
+		user.setLastName(" Flick");
 		service.updateFirstName(user);
 		System.out.println("User updated....");
 	} 
+	
+	
+//	@Test
+//	@Ignore
+//	public void updateBookingTest() {
+//		BookingService service = new BookingService(objectManager);
+//		System.out.println("searching for booking");
+//		Booking booking = service.findBookingById(3);
+//		booking.setStatus("Terminat");
+//		String status = booking.getStatus();
+//		System.out.println("Booking updated....");
+////		System.out.println(booking.getStatus());
+//		service.updateBooking();
+//	} 
+	
+	
 
-//	
-////	====================================kolia=====================================
+//	======================================================
+	
 //	@Test
 //	@Ignore
 //	public void changeDateTimeTest() {
 //		BookingService bs = new BookingService(objectManager);
 //		try {
 //			System.out.println("searching for booking");
-//			Booking booking = bs.findBookingById(22);
-//			booking.setDateDue("3/04/2018");
-//			booking.setBookingTime("15:40");
+//			Booking booking = bs.findBookingById(1);
+//			booking.setDateDue("17/05/2018");
+//			booking.setBookingTime("11:00");
 //			bs.changeDateTime(booking);
 //		}catch (ParseException e) {
 //			System.out.println(e);
 //		}
 //	} 
+//	============================================================================================
+
+	
+////	====================================kolia=====================================
 	
 	
 //	@Test

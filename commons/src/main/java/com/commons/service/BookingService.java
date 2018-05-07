@@ -80,17 +80,39 @@ public class BookingService {
 //	====================kolia===============================================
 	public Booking findBookingById(int id){
 //		User user = new User();
-		String query = "FROM Booking b WHERE b.customerId = :customerIdVariable";
+		String query = "FROM Booking b WHERE b.bookingId = :bookingIdVariable";
 		
 		//create query
-		Booking booking = oc.getSingleResult(Booking.class, query, "customerIdVariable", id);
+		Booking booking = oc.getSingleResult(Booking.class, query, "bookingIdVariable", id);
 		return booking;
 	}
+	
+	
+	
+	
 //	
 	
-	public void updateBooking() {
+	public void updateBooking(int bookingId, String bookingNewStatus) {
+//		Booking b = new Booking();
+		System.out.println(bookingId);
+		System.out.println(bookingNewStatus);
+		
+		
+		String sql = "UPDATE Booking " + 
+				"SET status = \'" + bookingNewStatus +  "\' " + 
+				"WHERE id = " + bookingId;
+		
+//		Query q = oc.createQuery(sql);
+		oc.executeUpdate(sql);
+		
+		System.out.println(bookingId);
+		System.out.println("This is the status: ---------> " + bookingNewStatus);
+		//oc.executeUpdate
 		System.out.println("update booking");
 	}
+	
+	
+
 
 	
 	
