@@ -45,7 +45,7 @@ public class Booking {
 	
 	public Booking(){}
 	
-	public Booking(int serviceId, int customerId, String dateDue,
+	public Booking(Service service, User customer, String dateDue,
 			String bookingTime) throws ParseException{
 		this.setCustomer(customer);
 		this.setService(service);

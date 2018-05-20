@@ -38,6 +38,9 @@ public class DisplayHandler extends Handler{
 			if(args.get(1).equals("bookings")) {
 				return new HtmlFileResponse("/html/bookings.html");
 			}
+			if(args.get(1).equals("products")) {
+				return new HtmlFileResponse("/html/products.html");
+			}
 		}
 		return new HtmlFileResponse("/html/admin.html");
 	}	

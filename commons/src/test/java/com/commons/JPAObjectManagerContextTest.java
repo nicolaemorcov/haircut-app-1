@@ -67,9 +67,14 @@ public class JPAObjectManagerContextTest {
 //	@Ignore
 //	public void createBookingTest()  {
 //		Booking b;
+//		User u = ;
+//		Service s = new Service();
+//		
+//		
 //		System.out.println("saving the booking");
+//		
 //		try {
-//			b = new Booki;
+//			b = new Booking(8, 7, "07/05/2018", "18:00");
 //			objectManager.persist(b);
 //		} catch (ParseException e) {
 //			// TODO Auto-generated catch block
@@ -85,7 +90,7 @@ public class JPAObjectManagerContextTest {
 		User c1;
 		try {
 			System.out.println("saving the object");
-			c1 = new User("Filea", "22547", "Filipp", "Kirkorov", "fk@mail.com", "30/04/1969", Gender.MALE);
+			c1 = new User("Fighter", "JCVD56", "Jean-claude", "Vandammer", "jcvd@mail.ru", "26/10/1960", Gender.MALE);
 //			dbManager.createMasterDBFactory();
 			objectManager.persist(c1);
 			System.out.println("saved to db...");
@@ -100,7 +105,7 @@ public class JPAObjectManagerContextTest {
 	public void createServiceTest()  {
 		Service s;
 		System.out.println("saving the object");
-		s = new Service("High Fade", 14.00, "aaaaaaaaaaaaaaaaaaaaaaaaaa");
+		s = new Service("Bald/Skin Fade", 14.00, "This is a Temple fade");
 		objectManager.persist(s);
 		System.out.println("saved to db...");
 	}
